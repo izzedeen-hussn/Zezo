@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المهندس التقني - صيانة الهواتف الذكية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gradient: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .highlight {
+            color: var(--accent-color);
+            font-weight: 800;
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-right: 4px solid var(--accent-color);
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-success {
+            background: #25d366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .hero-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .hero-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .hero-img:hover {
+            transform: translateY(-10px);
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .hero-img:nth-child(2) {
+            margin-top: 2rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .service-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 2rem;
+            background: var(--light-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            height: 300px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-color);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(-10px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-top: 0.2rem;
+        }
+
+        .contact-item:hover i {
+            color: white;
+        }
+
+        .contact-form {
+            background: var(--gradient);
+            padding: 2.5rem;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .whatsapp-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25d366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            justify-content: center;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .phone-display {
+            background: white;
+            color: var(--dark-color);
+            padding: 0.8rem;
+            border-radius: 10px;
+            margin-top: 0.5rem;
+            font-weight: 700;
+            direction: ltr;
+            text-align: center;
+            border: 2px solid #25d366;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-slogan {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #1877f2;
+            transform: translateY(-5px);
+        }
+
+        .social-links a[href*="facebook"]:hover {
+            background: #1877f2;
+        }
+
+        .social-links a[href*="whatsapp"]:hover {
+            background: #25d366;
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-images {
+                order: -1;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 2000;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-microchip"></i>
+                <span>المهندس التقني</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#services">خدماتنا</a></li>
+                <li><a href="#gallery">معرض الأعمال</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>حلول تقنية متكاملة <br><span class="highlight">لأجهزتك الذكية</span></h1>
+                <div class="slogan">
+                    <i class="fas fa-quote-right"></i>
+                    لا مستحيل مع المهندس أحمد الكوافي
+                </div>
+                <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
+                    نقدم جميع خدمات الهاتف النقال من صيانة الأعطال المختلفة إلى تحديثات السوفت وير. 
+                    فريق متخصص بقيادة المهندس أحمد الكوافي يضمن لك أعلى مستويات الجودة والاحترافية.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/218926452938" class="btn btn-success" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        تواصل عبر الواتساب
+                    </a>
+                    <a href="tel:+218926452938" class="btn btn-primary">
+                        <i class="fas fa-phone"></i>
+                        اتصال مباشر
+                    </a>
+                    <a href="#services" class="btn btn-secondary">
+                        استكشف خدماتنا
+                    </a>
+                </div>
+                <div class="phone-display" style="margin-top: 1rem; max-width: 250px;">
+                    <i class="fab fa-whatsapp" style="color: #25d366;"></i> +218 92-6452938
+                </div>
+            </div>
+            <div class="hero-images">
+                <div class="hero-img floating">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.diyfixtool.com/5ea88e37228b67ab2b42e00b692287a6f6000d34.jpg" alt="صيانة iPhone">
+                </div>
+                <div class="hero-img" style="margin-top: 3rem;">
+                    <img src="https://kimi-web-img.moonshot.cn/img/tek.store/7f74ff757ddc24abf66aaf2c1dcd3de91f7c65dd.jpg" alt="تصليح الهواتف">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا المتخصصة</h2>
+                <p>نغطي جميع احتياجات هاتفك النقال بأحدث التقنيات والأدوات</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>صيانة الهاردوير</h3>
+                    <p>إصلاح جميع أعطال الهاردوير من شاشات، بطاريات، أزرار، كاميرات، ومشاكل الشحن مع ضمان على جميع القطع المستبدلة</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>السوفت وير</h3>
+                    <p>تحديثات النظام، فك الأقفال، إصلاح مشاكل البرمجيات، استرجاع البيانات الضائعة، وحل جميع مشاكل البرمجيات</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>صيانة اللوحة الأم</h3>
+                    <p>إصلاح أعطال اللوحة الأم (المذربورد) بأحدث أجهزة الصيانة الدقيقة، استبدال IC، وإصلاح short circuits</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>علاج الأضرار المائية</h3>
+                    <p>إنقاذ الهواتف من الماء والرطوبة باستخدام أجهزة التنظيف بالموجات فوق الصوتية وتجفيف دقيق للدوائر</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <h3>فك الأقفال</h3>
+                    <p>فك أقفال الشبكات (Network Unlock)، إزالة iCloud، وتحرير الهواتف من جميع القيود البرمجية</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>الحماية والاكسسوارات</h3>
+                    <p>تركيب أفضل أنواع الحماية (استكرات حرارية، جرابات)، استشارات في شراء الأجهزة، وفحص شامل قبل الشراء</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>معرض أعمالنا</h2>
+                <p>نبذة من أعمال الصيانة والتصليح لأجهزة iPhone والهواتف الذكية</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://kimi-web-img.moonshot.cn/img/shopopenings.com/d1662010ef9388ac7a686a97d29d87620a416979.jpg" alt="صيانة iPhone">
+                    <div class="gallery-overlay">
+                        <h4>صيانة دقيقة</h4>
+                        <p>فك وتركيب احترافي لأجهزة iPhone</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://kimi-web-img.moonshot.cn/img/cdn.pixabay.com/d6213130947110b10f573ed648c4920b2b90518f.jpg" alt="صيانة الهواتف">
+                    <div class="gallery-overlay">
+                        <h4>تغيير الشاشات</h4>
+                        <p>تركيب شاشات أصلية بضمان</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.szzhpc.com/2865f5df30f2c0963af44909126052a3febdcc19.jpg" alt="صيانة اللوحة الأم">
+                    <div class="gallery-overlay">
+                        <h4>صيانة اللوحة الأم</h4>
+                        <p>إصلاح أعطال IC والدوائر</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://kimi-web-img.moonshot.cn/img/content3.jdmagicbox.com/e1c28630c92f20638161a3c2babea92b92416168.jpg" alt="محل الصيانة">
+                    <div class="gallery-overlay">
+                        <h4>المقر الرئيسي</h4>
+                        <p>بنغازي - حي السلام</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>تواصل معنا</h2>
+                <p>نحن هنا لمساعدتك على مدار الساعة</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>معلومات التواصل</h3>
+                    <p style="color: #64748b; line-height: 1.8;">
+                        يمكنك زيارتنا في مقرنا أو التواصل معنا مباشرة عبر الواتساب للاستفسارات والحجز. 
+                        نضمن لك الرد السريع والخدمة المتميزة.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>العنوان</h4>
+                                <p>ليبيا - بنغازي<br>حي السلام - شارع النقالات</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>الواتساب</h4>
+                                <p dir="ltr" style="text-align: right; font-size: 1.1rem; font-weight: 700;">+218 92-6452938</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>رقم الهاتف</h4>
+                                <p dir="ltr" style="text-align: right; font-weight: 700;">+218 92-6452938</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-user-tie"></i>
+                            <div>
+                                <h4>الإدارة</h4>
+                                <p>المهندس أحمد الكوافي</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>ساعات العمل</h4>
+                                <p>يومياً من 9:00 صباحاً - 10:00 مساءً</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="whatsapp-btns">
+                        <a href="https://wa.me/218926452938" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp fa-lg"></i>
+                            فتح محادثة واتساب مباشرة
+                        </a>
+                        <a href="tel:+218926452938" class="whatsapp-btn" style="background: #2563eb;">
+                            <i class="fas fa-phone"></i>
+                            اتصال هاتفي مباشر
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>أرسل لنا رسالة</h3>
+                    <p style="margin-bottom: 1.5rem; opacity: 0.9;">
+                        املأ النموذج أدناه وسيتم تحويلك تلقائياً إلى الواتساب مع نص الرسالة جاهزاً
+                    </p>
+                    <form onsubmit="sendMessage(event)">
+                        <div class="form-group">
+                            <label>الاسم الكامل</label>
+                            <input type="text" id="name" required placeholder="أدخل اسمك">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="phone" required placeholder="أدخل رقم هاتفك">
+                        </div>
+                        <div class="form-group">
+                            <label>نوع الجهاز والمشكلة</label>
+                            <textarea id="message" required placeholder="اكتب نوع هاتفك ووصف المشكلة..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fab fa-whatsapp"></i>
+                            إرسال عبر الواتساب
+                        </button>
+                    </form>
+                    <div class="phone-display" style="margin-top: 1rem;">
+                        <i class="fas fa-mobile-alt"></i> +218 92-6452938
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-microchip"></i> المهندس التقني
+            </div>
+            <div class="footer-slogan">
+                " لا مستحيل مع المهندس أحمد الكوافي "
+            </div>
+            
+            <div class="social-links">
+                <a href="https://wa.me/218926452938" target="_blank" title="واتساب">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100040893956041" target="_blank" title="فيسبوك">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="تليجرام"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700; color: #25d366;">
+                <i class="fab fa-whatsapp"></i> +218 92-6452938
+            </div>
+            
+            <div style="margin-bottom: 2rem; font-size: 0.9rem; opacity: 0.8;">
+                <i class="fas fa-map-marker-alt"></i> بنغازي - حي السلام - شارع النقالات
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2025 المهندس التقني</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">إدارة: المهندس أحمد الكوافي</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Message -->
+    <div id="successMsg" class="success-message">
+        <i class="fas fa-check-circle"></i>
+        سيتم تحويلك إلى الواتساب...
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            nav.style.position = 'absolute';
+            nav.style.top = '100%';
+            nav.style.left = '0';
+            nav.style.right = '0';
+            nav.style.background = 'white';
+            nav.style.flexDirection = 'column';
+            nav.style.padding = '2rem';
+            nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Send Message Function
+        function sendMessage(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappMessage = `مرحباً، أنا ${name}%0Aرقم هاتفي: ${phone}%0A%0A${message}`;
+            const whatsappURL = `https://wa.me/218926452938?text=${whatsappMessage}`;
+            
+            // Show success message
+            const successMsg = document.getElementById('successMsg');
+            successMsg.style.display = 'block';
+            
+            setTimeout(() => {
+                window.open(whatsappURL, '_blank');
+                successMsg.style.display = 'none';
+            }, 1500);
+            
+            // Reset form
+            e.target.reset();
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
